@@ -1,0 +1,20 @@
+{
+  "domain": "kaysun_modbus",
+  "name": "Kaysun GW-Modbus(A)",
+  "version": "1.0.4",
+  "config_flow": true,
+  "dependencies": [
+    "modbus"
+  ],
+  "documentation": "https://github.com/hlhk2017/kaysun_modbus",
+  "issue_tracker": "https://github.com/hlhk2017/kaysun_modbus/issues",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "codeowners": [
+    "@hlhk2017"
+  ],
+  "loggers": [
+    "pymodbus"
+  ],
+  "requirements": []
+}

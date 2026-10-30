@@ -1,0 +1,91 @@
+{
+  "title": "Kaysun GW-Modbus(A)",
+  "config": {
+    "step": {
+      "user": {
+        "title": "连接 GW-Modbus(A) 网关",
+        "description": "请确认网关已启用 Modbus TCP，并且 Home Assistant 可以访问网关。",
+        "data": {
+          "gateway_name": "网关名称",
+          "host": "网关 IP 或主机名",
+          "port": "Modbus TCP 端口",
+          "unit_id": "Modbus 地址",
+          "idu_addresses": "室内机地址",
+          "odu_addresses": "室外机地址",
+          "idu_types": "室内机类型覆盖",
+          "scan_interval": "轮询间隔",
+          "timeout": "请求超时",
+          "vrf_min_temperature": "VRF 最低设定温度",
+          "vrf_max_temperature": "VRF 最高设定温度",
+          "hthm_min_temperature": "HTHM 最低设定温度",
+          "hthm_max_temperature": "HTHM 最高设定温度"
+        },
+        "data_description": {
+          "host": "出厂默认 IP 为 192.168.1.185。",
+          "port": "Modbus TCP 通常使用 502 端口。",
+          "unit_id": "网关网页中配置的 Modbus 地址。",
+          "idu_addresses": "当前系统有 32 台室内机，默认填写 0-31；如果实际地址不连续，可使用逗号分隔，例如：0-7,10,12-31。",
+          "odu_addresses": "可选，填写 0 到 31 的地址或范围。",
+          "idu_types": "可选，自动识别不正确时填写地址和类型，例如：0:vrf,2:hthm；类型可用 auto、vrf、hthm。"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接网关，或无法读取所选设备地址。",
+      "invalid_input": "请检查设备地址范围、类型覆盖和温度上下限。"
+    },
+    "abort": {
+      "already_configured": "此网关及 Modbus 地址已经配置。"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "配置 Kaysun GW-Modbus(A)",
+        "description": "保存前会使用新参数连接网关进行验证，保存后集成自动重载。",
+        "data": {
+          "gateway_name": "网关名称",
+          "host": "网关 IP 或主机名",
+          "port": "Modbus TCP 端口",
+          "unit_id": "Modbus 地址",
+          "idu_addresses": "室内机地址",
+          "odu_addresses": "室外机地址",
+          "idu_types": "室内机类型覆盖",
+          "scan_interval": "轮询间隔",
+          "timeout": "请求超时",
+          "vrf_min_temperature": "VRF 最低设定温度",
+          "vrf_max_temperature": "VRF 最高设定温度",
+          "hthm_min_temperature": "HTHM 最低设定温度",
+          "hthm_max_temperature": "HTHM 最高设定温度"
+        },
+        "data_description": {
+          "idu_addresses": "当前系统默认使用 0-31 共 32 个地址；实际地址不连续时可填写多个范围。",
+          "odu_addresses": "可选，填写 0 到 31 的地址或范围。",
+          "idu_types": "可选，例如：0:vrf,2:hthm。"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接网关，或无法读取所选设备地址。",
+      "invalid_input": "请检查设备地址范围、类型覆盖和温度上下限。",
+      "already_configured": "此网关及 Modbus 地址已经配置。"
+    }
+  },
+  "entity": {
+    "fan": {
+      "fan_speed": {"name": "风速"}
+    },
+    "binary_sensor": {
+      "gateway_connected": {"name": "连接"},
+      "online": {"name": "在线"},
+      "error": {"name": "故障"},
+      "power": {"name": "运行"}
+    },
+    "sensor": {
+      "error_code": {"name": "故障代码"},
+      "outdoor_temperature": {"name": "室外温度"},
+      "active_idus": {"name": "运行室内机数量"},
+      "operating_mode": {"name": "运行模式"}
+    }
+  }
+}
